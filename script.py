@@ -1,5 +1,3 @@
-from random import choice
-
 print("\n\n======STUDENT INFORMATION ======")
 print("1: Add Student")
 print("2: display Student")
