@@ -1,3 +1,4 @@
+student_list = []
 def add_student():
     print("Add Student")
     id = (input("Enter Student ID: "))
@@ -5,11 +6,14 @@ def add_student():
     email = input("Enter your Student email: ")
     age = int(input("Enter age: "))
     print("Successfully added Student")
+    data_student = (id,name,email, age)
+    student_list.append(data_student)
 def display_student():
-    print("Student ID is ", id)
-    print("Student Name is ", name)
-    print("Student Email is", email)
-    print("Student age is ", age)
+  for student in student_list:
+    print("Student ID is ", student[0])
+    print("Student Name is ", student[1])
+    print("Student Email is", student[2])
+    print("Student age is ", student[3])
 def search_student():
     print("search Student ")
 def update_student():
@@ -28,7 +32,7 @@ while True:
  if choice == 1:
      add_student()
  elif choice == 2:
-  display_student()
+   display_student()
  elif choice == 3:
     search_student()
  elif choice == 4:
