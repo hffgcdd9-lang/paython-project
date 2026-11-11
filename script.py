@@ -1,19 +1,27 @@
+
+
 student_list = []
+def validation_int(prompt_message):
+    while True:
+        try:
+            return int(input(prompt_message))
+        except ValueError:
+            print("please enter a valid integer")
 def add_student():
     print("Add Student")
-    id = (input("Enter Student ID: "))
+    id = validation_int("Enter Student ID: ")
     name = input("Enter Student Name: ")
     email = input("Enter your Student email: ")
-    age = int(input("Enter age: "))
+    age = validation_int("Enter age: ")
     print("Successfully added Student")
-    data_student = (id,name,email, age)
+    data_student = f"({id},{name},{email},{age})"
     student_list.append(data_student)
+    with open ("student.txt","a") as f:
+        f.write(data_student)
 def display_student():
-  for student in student_list:
-    print("Student ID is ", student[0])
-    print("Student Name is ", student[1])
-    print("Student Email is", student[2])
-    print("Student age is ", student[3])
+ with open ("student.txt","r") as f:
+   for student in f:
+    print(student.strip()+"\n")
 def search_student():
     print("search Student ")
 def update_student():
