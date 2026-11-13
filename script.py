@@ -1,3 +1,4 @@
+
 def get_valid_id(id):
   while True:
      #Numbers only
@@ -48,13 +49,36 @@ def email_validator(email):
             return std_email
         else:
             print("please enter a valid email address")
+#^^^^^^^^^^Age^^^^^^^^^^^^^^
+def age_validator(age):
+    while True:
+        std_age=input(age)
+        if std_age.isdigit():
+            age_num=int(std_age)
+            if 18<=age_num<=25:
+                return age_num
+            else:
+                print("Age must be between 18 and 25")
+#another logic---
+#after using same def and  while True:
+# try :
+  #   std_age=int(input(age))
+  #   if 18<=std_age<=25:
+  #     return std_age
+  #   else:
+  #     print("age must e between 18 and 25")
+# except ValueError :
+  #     print("Enter digits only!Try again")
+  #note ("I try to learn codes that match my logic thinking like these comments
+  # every comments points to logic I liked or other ways I thoughts and tried to learnt)
+  #I hope u enjoy my coding
 #-----------------------------------------------------------
 def add_student():
     print("Add Student")
     id = get_valid_id("Enter Student ID: ")
     name = get_invalid_name("Enter Student Name: ")
     email = email_validator("Enter your Student email: ")
-    age = validation_int("Enter age: ")
+    age = age_validator("Enter age: ")
     print("Successfully added Student")
     data_student = f"{id},{name},{email},{age}\n"
     with open ("student.txt","a") as file:
