@@ -1,4 +1,3 @@
-
 def get_valid_id(id):
   while True:
      #Numbers only
@@ -81,8 +80,21 @@ def add_student():
     age = age_validator("Enter age: ")
     print("Successfully added Student")
     data_student = f"{id},{name},{email},{age}\n"
-    with open ("student.txt","a") as file:
-        file.write(data_student)
+    student_list=[]
+    try:
+        with open("student.txt","r") as file:
+         for student in file:
+             if student.strip():
+                 student_list.append(student)
+    except FileNotFoundError:
+        pass
+    student_list.append(data_student)
+    student_list.sort(key =lambda x:int (x.strip().split(",")[0]))
+    with open ("student.txt","w") as file:
+        for student in student_list:
+          file.write(student)
+    print("Successfully added and sorted students")
+
 def display_student():
  try:
   with open ("student.txt","r") as f:
