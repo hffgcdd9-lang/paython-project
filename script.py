@@ -1,4 +1,3 @@
-
 def get_valid_id(id):
   while True:
      #Numbers only
@@ -84,15 +83,68 @@ def add_student():
     with open ("student.txt","a") as file:
         file.write(data_student)
 def display_student():
- with open ("student.txt","r") as f:
+ try:
+  with open ("student.txt","r") as f:
    for student in f:
-    print(student.strip()+"\n")
-def search_student():
-    print("search Student ")
-def update_student():
-    print("Update Student")
-def delete_student():
-    print("Delete Student")
+    if student.strip():
+     student_data = student.strip().split(",")
+     print(f"ID:{student_data[0]},Name:{student_data[1]},Email:{student_data[2]},Age:{student_data[3]}\n")
+ except FileNotFoundError:
+     print("Add students FIRSTLY!")
+def search_student(id):
+    try:
+        with open("student.txt","r") as f:
+            for student in f:
+                if student.strip():
+                    data =student.strip().split(",")
+                    if id==data[0]:
+                        print("student was found")
+                        print(f"ID:{data[0]},Name:{data[1]},Email:{data[2]},Age:{data[3]}")
+                        return
+            print("student ID not found")
+    except FileNotFoundError:
+        print("student ID not found")
+def update_student(id,new_name,new_email,new_age):
+    try:
+        with open("student.txt","r") as file:
+            lines=file.readlines()
+        found=False
+        with open("student.txt","w")as file:
+            for line in lines:
+                if line.strip():
+                    data=line.strip().split(",")
+                    if id==data[0]:
+                        file.write(f"{id},{new_name},{new_email},{new_age}\n")
+                        found=True
+                    else:
+                        file.write(line)
+        if found:
+                    print("student updated successfully")
+        else:
+                    print("student not found to update")
+    except FileNotFoundError:
+        print("The file doesn't exist")
+def delete_student(id):
+    try:
+        with open("student.txt","r") as file:
+            lines=file.readlines()
+        found=False
+        with open("student.txt","w") as file:
+            for line in lines:
+                if line.strip():
+                    data=line.strip().split(",")
+                    if id ==data[0]:
+                        found=True
+                        continue
+                    file.write(line)
+        if found :
+            print("student deleted successfully")
+        else:
+            print("student not found to delete")
+    except FileNotFoundError:
+        print("The file doesn't exist")
+
+#@@2@ @@@@@@@@@@@@@
 while True:
  print("======STUDENT INFORMATION ======")
  print("1: Add Student")
@@ -107,10 +159,16 @@ while True:
  elif choice == 2:
    display_student()
  elif choice == 3:
-    search_student()
+    id=input("Enter Student ID: ")
+    search_student(id)
  elif choice == 4:
-     update_student()
+     id = input("Enter Student ID: ")
+     new_name = input("Enter Student New Name: ")
+     new_email = input("Enter Student New Email: ")
+     new_age = input("Enter Student New Age: ")
+     update_student(id, new_name, new_email, new_age)
  elif choice == 5:
-     delete_student()
+     id = input("Enter Student ID: ")
+     delete_student(id)
  else:
      break
