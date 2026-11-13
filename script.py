@@ -70,7 +70,7 @@ def age_validator(age):
 # except ValueError :
   #     print("Enter digits only!Try again")
   #note ("I try to learn codes that match my logic thinking like these comments
-  # every comments points to logic I liked or other ways I thoughts and tried to learnt)
+  # Every comment points to logic I liked or other thoughts and tried to learn them)
   #I hope u enjoy my coding
 #-----------------------------------------------------------
 def add_student():
